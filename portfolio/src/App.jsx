@@ -1,17 +1,19 @@
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
-import React, {Suspense} from 'react';
+import React, {Suspense, lazy} from 'react';
 import LoadingIcon from "./components/Loading.jsx";
-import ThreeBg from "./components/ThreeBg.jsx";
+import Particles from "./components/Background.jsx";
 import './index.css'
 import './App.css'
 
 
+const NavBar = lazy(() => import('./components/NavBar.jsx'));
+
 export default function App() {
   return (
     <div className="bg-black min-h-screen flex justify-center items-center">
-      <ThreeBg />
+      <Particles />
       <div className="relative z-10">
         <Suspense
           fallback={
@@ -20,7 +22,7 @@ export default function App() {
             </div>
           }
         >
-          <LoadingIcon />
+          <NavBar />
         </Suspense>
       </div>
     </div>

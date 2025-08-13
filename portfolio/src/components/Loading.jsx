@@ -9,7 +9,7 @@ export default function LoadingIcon() {
         height="6em"
         viewBox="0 0 24 24"
       >
-        <circle cx="12" cy="12" r="0" fill="#66c61c">
+        <circle cx="12" cy="12" r="0" fill="#6049ea">
           <animate
             id="SVGPW9ARccz"
             fill="freeze"
@@ -30,7 +30,7 @@ export default function LoadingIcon() {
             values="1;0"
           />
         </circle>
-        <circle cx="12" cy="12" r="0" fill="#66c61c">
+        <circle cx="12" cy="12" r="0" fill="#6049ea">
           <animate
             id="SVGODvPjeTJ"
             fill="freeze"
@@ -51,7 +51,7 @@ export default function LoadingIcon() {
             values="1;0"
           />
         </circle>
-        <circle cx="12" cy="12" r="0" fill="#66c61c">
+        <circle cx="12" cy="12" r="0" fill="#6049ea">
           <animate
             id="SVGaeu34cWL"
             fill="freeze"
