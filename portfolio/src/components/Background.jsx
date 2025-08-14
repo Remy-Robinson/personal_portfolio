@@ -1,6 +1,8 @@
 import { useEffect, useRef } from "react";
 import { Renderer, Camera, Geometry, Program, Mesh } from "ogl";
 
+//define Color Pallette 
+
 const defaultLightColors = ["#6049ea", "#311f9c", "#2843de"];
 const defaultDarkColors = ["#8a76ff", "#5e43ff", "#3d1fff"];
 
@@ -78,7 +80,7 @@ const fragment = /* glsl */ `
 `;
 
 const Particles = ({
-  particleCount = 200,
+  particleCount = 250,
   particleSpread = 10,
   speed = 0.1,
   lightColors = defaultLightColors,
@@ -91,7 +93,7 @@ const Particles = ({
   cameraDistance = 20,
   disableRotation = false,
   className,
-  isDark = false,
+  isDark = true,
 }) => {
   const containerRef = useRef(null);
   const mouseRef = useRef({ x: 0, y: 0 });
@@ -102,7 +104,15 @@ const Particles = ({
     const container = containerRef.current;
     if (!container) return;
 
-    const renderer = new Renderer({ depth: false, alpha: true });
+    const renderer = new Renderer({ depth: false, 
+      alpha: true, 
+      webgl: {
+        antialias: false,
+        premultipliedAlpha: true,
+        preserveDrawingBuffer: false,
+        powerPreference: 'high-performance'
+      }
+    });
     const gl = renderer.gl;
     container.appendChild(gl.canvas);
     gl.clearColor(0, 0, 0, 0);
@@ -241,11 +251,12 @@ const Particles = ({
 
   // Effect to update colors when mode changes
   useEffect(() => {
-    if (!particlesRef.current || !colorsRef.current) return;
+    if (!particlesRef.current || !colorsRef.current) return; 
     
-    const palette = isDark ? darkColors : lightColors;
+    const palette = isDark ? darkColors : lightColors; //sets palette based off mode
     const colors = colorsRef.current;
     
+    //updates all particle colours
     for (let i = 0; i < particleCount; i++) {
       const col = hexToRgb(palette[Math.floor(Math.random() * palette.length)]);
       colors.set(col, i * 3);

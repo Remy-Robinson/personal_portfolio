@@ -4,13 +4,14 @@ import viteLogo from '/vite.svg';
 import React, { Suspense, lazy } from 'react';
 import LoadingIcon from "./components/Loading.jsx";
 import Particles from "./components/Background.jsx";
+import HeroSection from "./components/heroSection.jsx";
 import './index.css';
 import './App.css';
 
 const NavBar = lazy(() => import('./components/NavBar.jsx'));
 
 export default function App() {
-  const [isDark, setIsDark] = useState(true);
+  const [isDark, setIsDark] = useState(true)
 
   useEffect(() => {
     // Apply the class to the HTML element
@@ -23,18 +24,25 @@ export default function App() {
     localStorage.setItem('darkMode', JSON.stringify(isDark));
   }, [isDark]);
 
+
   return (
     <div className={`min-h-screen flex justify-center items-center ${isDark ? 'dark bg-gray-900' : 'bg-white'}`}>
-      <Particles isDark={isDark} />
       <div className="relative z-10 w-full">
-        <Suspense
-          fallback={
+        <Suspense fallback={
             <div className="flex justify-center items-center min-h-screen">
-              <LoadingIcon />
+              <LoadingIcon pulse/>
             </div>
           }
         >
-          <NavBar isDark={isDark} setIsDark={setIsDark} />
+          <div className = "relative z-0 w-full">
+            <Particles isDark={isDark} />
+          </div>
+          <div className="relative z-10">
+            <HeroSection isDark={isDark} setIsDark={setIsDark} />
+          </div>
+          <div className="relative z-20">
+            <NavBar isDark={isDark} setIsDark={setIsDark} />
+          </div>
         </Suspense>
       </div>
     </div>

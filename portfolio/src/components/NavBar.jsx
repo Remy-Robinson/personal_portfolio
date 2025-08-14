@@ -38,7 +38,7 @@ const NavBar = ({ isDark = true, setIsDark }) => { // Default to dark mode
         <div className="flex justify-between h-16 items-center">
 
 
-          <a href="#" className={`text-2xl font-bold font-machina ${isDark ? "text-gray-200" : "text-gray-800"}`}>
+          <a href="#" className={`text-2xl font-bold font-figtree ${isDark ? "text-gray-200" : "text-gray-800"}`}>
             Remy
           </a>
 
@@ -48,7 +48,7 @@ const NavBar = ({ isDark = true, setIsDark }) => { // Default to dark mode
               <a
                 key={item.title}
                 href={item.href}
-                className="hover:text-indigo-500 transition-colors font-machina"
+                className="hover:text-indigo-500 transition-colors font-figtree"
               >
                 {item.title}
               </a>
