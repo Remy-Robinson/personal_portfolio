@@ -2,28 +2,18 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { SunIcon, MoonIcon, Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 
-const NavBar = ({ isDark = true, setIsDark }) => { // Default to dark mode
+const NavBar = ({ isDark = true, setIsDark }) => {
   const [isOpen, setIsOpen] = useState(false);
 
-  // Initialize and handle theme changes
   useEffect(() => {
     document.documentElement.classList.toggle("dark", isDark);
     localStorage.setItem("darkMode", JSON.stringify(isDark));
   }, [isDark]);
 
-  const toggleTheme = () => {
-    setIsDark(!isDark);
-  };
+  const toggleTheme = () => setIsDark(!isDark);
 
-  // Navbar background colors 
-  const navBackground = isDark 
-    ? "bg-gray-900/80 text-gray-100" 
-    : "bg-white/80 text-gray-900";
-
-  // Mobile menu background
-  const mobileMenuBackground = isDark 
-    ? "bg-gray-900/80" 
-    : "bg-gray-100";
+  const navBackground = isDark ? "bg-gray-900/80" : "bg-white/80";
+  const mobileMenuBackground = isDark ? "bg-gray-900/80" : "bg-gray-100";
 
   const navItems = [
     { title: "Home", href: "#" },
@@ -33,40 +23,53 @@ const NavBar = ({ isDark = true, setIsDark }) => { // Default to dark mode
   ];
 
   return (
-    <nav className={`fixed top-0 left-0 w-full z-50 ${navBackground} backdrop-blur-md shadow-sm transition-colors duration-300`}>
+    <nav
+      className={`fixed top-0 left-0 w-full z-[9999] ${navBackground} backdrop-blur-md shadow-sm transition-colors duration-300`}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between h-16 items-center">
-
-
-          <a href="#" className={`text-2xl font-bold font-figtree ${isDark ? "text-gray-200" : "text-gray-800"}`}>
+        <div className="flex justify-between items-center h-16">
+          {/* Logo */}
+          <a
+            href="#"
+            className={`text-2xl font-bold font-figtree ${
+              isDark ? "text-gray-200" : "text-gray-800"
+            }`}
+          >
             Remy
           </a>
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-6">
             {navItems.map((item) => (
-              <a
+              <motion.a
                 key={item.title}
                 href={item.href}
-                className="hover:text-indigo-500 transition-colors font-figtree"
+                animate={{ color: isDark ? "#e5e7eb" : "#1f2937" }}
+                whileHover={{
+                  color: isDark ? "#818cf8" : "#6366f1",
+                  scale: 1.05,
+                }}
+                transition={{ type: "spring", stiffness: 100 }}
+                className="font-figtree transition-colors duration-200"
               >
                 {item.title}
-              </a>
+              </motion.a>
             ))}
-            
-            {/* Toggle Button */}
-            <button
+
+            {/* Theme Toggle */}
+            <motion.button
               onClick={toggleTheme}
-              className={`p-2 rounded-md ${
-                isDark ? "bg-gray-700 hover:bg-gray-600" : "bg-gray-200 hover:bg-gray-300"
-              } transition-colors`}
+              whileHover={{ scale: 1.1 }}
+              className={`p-2 rounded-md transition-colors duration-200 ${
+                isDark ? "bg-gray-700" : "bg-gray-200"
+              }`}
             >
               {isDark ? (
                 <SunIcon className="h-5 w-5 text-yellow-500" />
               ) : (
                 <MoonIcon className="h-5 w-5 text-gray-800" />
               )}
-            </button>
+            </motion.button>
           </div>
 
           {/* Mobile Menu Button */}
@@ -94,25 +97,32 @@ const NavBar = ({ isDark = true, setIsDark }) => { // Default to dark mode
           >
             <div className="px-4 py-3 space-y-3">
               {navItems.map((item) => (
-                <a
+                <motion.a
                   key={item.title}
                   href={item.href}
-                  className={`block ${
-                    isDark ? "text-gray-200" : "text-gray-800"
-                  } hover:text-indigo-500 transition-colors`}
                   onClick={() => setIsOpen(false)}
+                  initial={{ color: isDark ? "#e5e7eb" : "#1f2937" }}
+                  whileHover={{
+                    color: isDark ? "#818cf8" : "#6366f1",
+                    scale: 1.05,
+                  }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                  className="block font-figtree transition-colors duration-200"
                 >
                   {item.title}
-                </a>
+                </motion.a>
               ))}
-              <button
+
+              {/* Mobile Theme Toggle */}
+              <motion.button
                 onClick={() => {
                   toggleTheme();
                   setIsOpen(false);
                 }}
-                className={`w-full flex justify-center items-center p-2 rounded-md ${
-                  isDark ? "bg-gray-200 hover:bg-gray-300" : "bg-gray-700 hover:bg-gray-600"
-                } transition-colors`}
+                whileHover={{ scale: 1.05 }}
+                className={`w-full flex justify-center items-center p-2 rounded-md transition-colors duration-200 ${
+                  isDark ? "bg-gray-200" : "bg-gray-700"
+                }`}
               >
                 {isDark ? (
                   <>
@@ -125,7 +135,7 @@ const NavBar = ({ isDark = true, setIsDark }) => { // Default to dark mode
                     <span className="ml-2 text-white">Dark Mode</span>
                   </>
                 )}
-              </button>
+              </motion.button>
             </div>
           </motion.div>
         )}

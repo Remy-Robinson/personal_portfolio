@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { MdOutlineEmail } from "react-icons/md";
+import './heroSection.css';
 
 const HeroSection = ({ isDark = true, setIsDark }) => {
   const buttons = [
@@ -24,7 +25,6 @@ const HeroSection = ({ isDark = true, setIsDark }) => {
           }`}
         />
       ),
-      
     },
     {
       id: 3,
@@ -39,20 +39,22 @@ const HeroSection = ({ isDark = true, setIsDark }) => {
     },
   ];
 
-// MAIN LOOP
-
+  // MAIN LOOP
 
   return (
-    <div className="flex flex-col justify-center items-center min-h-screen px-4 text-center">
+    <div className="flex flex-col justify-center items-left min-h-screen px-4 text-center">
       <h1
-        className={`text-4xl md:text-6xl font-bold mb-4 ${
+        className={`text-left text-4xl md:text-6xl font-bold mb-4 ${
           isDark ? "text-white" : "text-gray-900"
         }`}
       >
-        Remy Robinson
+        Hi, I'm{" "}
+        <span className="text-4xl md:text-6xl font-bold animate-gradient">
+          Remy!
+        </span>
       </h1>
       <p
-        className={`text-lg md:text-2xl mb-8 max-w-2xl ${
+        className={`text-left text-lg md:text-2xl mb-8 max-w-2xl ${
           isDark ? "text-gray-300" : "text-gray-700"
         }`}
       >
@@ -67,6 +69,9 @@ const HeroSection = ({ isDark = true, setIsDark }) => {
             href={button.href}
             target="_blank"
             rel="noopener noreferrer"
+            whileHover={{
+              color: isDark ? "#818cf8" : "#6366f1",
+            }}
             className={`text-3xl ${button.className}`}
           >
             {button.icon}

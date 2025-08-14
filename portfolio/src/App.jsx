@@ -34,13 +34,13 @@ export default function App() {
             </div>
           }
         >
-          <div className = "relative z-0 w-full">
+          <div className = "relative z-0 w-full pointer-events-none">
             <Particles isDark={isDark} />
           </div>
           <div className="relative z-10">
             <HeroSection isDark={isDark} setIsDark={setIsDark} />
           </div>
-          <div className="relative z-20">
+          <div className="relative z-10">
             <NavBar isDark={isDark} setIsDark={setIsDark} />
           </div>
         </Suspense>
