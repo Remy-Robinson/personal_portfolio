@@ -1,7 +1,8 @@
 import { useEffect, useRef } from "react";
 import { Renderer, Camera, Geometry, Program, Mesh } from "ogl";
 
-const defaultColors = ["#ffffff", "#ffffff", "#ffffff"];
+const defaultLightColors = ["#6049ea", "#311f9c", "#2843de"];
+const defaultDarkColors = ["#8a76ff", "#5e43ff", "#3d1fff"];
 
 const hexToRgb = (hex) => {
   hex = hex.replace(/^#/, "");
@@ -15,6 +16,7 @@ const hexToRgb = (hex) => {
   return [r, g, b];
 };
 
+// Vertex Shader
 const vertex = /* glsl */ `
   attribute vec3 position;
   attribute vec4 random;
@@ -50,6 +52,7 @@ const vertex = /* glsl */ `
   }
 `;
 
+// Fragment Shader
 const fragment = /* glsl */ `
   precision highp float;
   
@@ -75,10 +78,11 @@ const fragment = /* glsl */ `
 `;
 
 const Particles = ({
-  particleCount = 1000,
+  particleCount = 200,
   particleSpread = 10,
   speed = 0.1,
-  particleColors,
+  lightColors = defaultLightColors,
+  darkColors = defaultDarkColors,
   moveParticlesOnHover = false,
   particleHoverFactor = 1,
   alphaParticles = false,
@@ -87,9 +91,12 @@ const Particles = ({
   cameraDistance = 20,
   disableRotation = false,
   className,
+  isDark = false,
 }) => {
   const containerRef = useRef(null);
   const mouseRef = useRef({ x: 0, y: 0 });
+  const particlesRef = useRef(null);
+  const colorsRef = useRef(null);
 
   useEffect(() => {
     const container = containerRef.current;
@@ -127,7 +134,15 @@ const Particles = ({
     const positions = new Float32Array(count * 3);
     const randoms = new Float32Array(count * 4);
     const colors = new Float32Array(count * 3);
-    const palette = particleColors && particleColors.length > 0 ? particleColors : defaultColors;
+    colorsRef.current = colors;
+
+    const updateColors = (palette) => {
+      for (let i = 0; i < count; i++) {
+        const col = hexToRgb(palette[Math.floor(Math.random() * palette.length)]);
+        colors.set(col, i * 3);
+      }
+      return colors;
+    };
 
     for (let i = 0; i < count; i++) {
       let x, y, z, len;
@@ -140,9 +155,10 @@ const Particles = ({
       const r = Math.cbrt(Math.random());
       positions.set([x * r, y * r, z * r], i * 3);
       randoms.set([Math.random(), Math.random(), Math.random(), Math.random()], i * 4);
-      const col = hexToRgb(palette[Math.floor(Math.random() * palette.length)]);
-      colors.set(col, i * 3);
     }
+
+    // Initialize with appropriate colors based on initial dark mode state
+    updateColors(isDark ? darkColors : lightColors);
 
     const geometry = new Geometry(gl, {
       position: { size: 3, data: positions },
@@ -165,6 +181,7 @@ const Particles = ({
     });
 
     const particles = new Mesh(gl, { mode: gl.POINTS, geometry, program });
+    particlesRef.current = particles;
 
     let animationFrameId;
     let lastTime = performance.now();
@@ -207,7 +224,6 @@ const Particles = ({
         container.removeChild(gl.canvas);
       }
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     particleCount,
     particleSpread,
@@ -219,12 +235,30 @@ const Particles = ({
     sizeRandomness,
     cameraDistance,
     disableRotation,
+    lightColors,
+    darkColors,
   ]);
+
+  // Effect to update colors when mode changes
+  useEffect(() => {
+    if (!particlesRef.current || !colorsRef.current) return;
+    
+    const palette = isDark ? darkColors : lightColors;
+    const colors = colorsRef.current;
+    
+    for (let i = 0; i < particleCount; i++) {
+      const col = hexToRgb(palette[Math.floor(Math.random() * palette.length)]);
+      colors.set(col, i * 3);
+    }
+    
+    // Update the geometry with new colors
+    particlesRef.current.geometry.attributes.color.needsUpdate = true;
+  }, [isDark, particleCount, lightColors, darkColors]);
 
   return (
     <div
       ref={containerRef}
-      className={`fixed inset-0 z-0 pointer-events-none ${className}`}
+      className={`fixed inset-0 w-full h-full ${className}`}
     />
   );
 };

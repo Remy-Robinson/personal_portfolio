@@ -1,19 +1,29 @@
-// src/components/NavBar.jsx
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { SunIcon, MoonIcon, Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 
-const NavBar = () => {
-  const [isDark, setIsDark] = useState(false);
+const NavBar = ({ isDark = true, setIsDark }) => { // Default to dark mode
   const [isOpen, setIsOpen] = useState(false);
 
+  // Initialize and handle theme changes
   useEffect(() => {
-    if (isDark) {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
+    document.documentElement.classList.toggle("dark", isDark);
+    localStorage.setItem("darkMode", JSON.stringify(isDark));
   }, [isDark]);
+
+  const toggleTheme = () => {
+    setIsDark(!isDark);
+  };
+
+  // Navbar background colors 
+  const navBackground = isDark 
+    ? "bg-gray-900/80 text-gray-100" 
+    : "bg-white/80 text-gray-900";
+
+  // Mobile menu background
+  const mobileMenuBackground = isDark 
+    ? "bg-gray-900/80" 
+    : "bg-gray-100";
 
   const navItems = [
     { title: "Home", href: "#" },
@@ -23,13 +33,13 @@ const NavBar = () => {
   ];
 
   return (
-    <nav className="fixed top-0 left-0 w-full z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md shadow-sm">
+    <nav className={`fixed top-0 left-0 w-full z-50 ${navBackground} backdrop-blur-md shadow-sm transition-colors duration-300`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 items-center">
-          
-          {/* Logo */}
-          <a href="#" className="text-2xl font-bold text-gray-800 dark:text-gray-100">
-            MyPortfolio
+
+
+          <a href="#" className={`text-2xl font-bold font-machina ${isDark ? "text-gray-200" : "text-gray-800"}`}>
+            Remy
           </a>
 
           {/* Desktop Menu */}
@@ -38,20 +48,34 @@ const NavBar = () => {
               <a
                 key={item.title}
                 href={item.href}
-                className="text-gray-800 dark:text-gray-200 hover:text-indigo-500 transition"
+                className="hover:text-indigo-500 transition-colors font-machina"
               >
                 {item.title}
               </a>
             ))}
+            
+            {/* Toggle Button */}
+            <button
+              onClick={toggleTheme}
+              className={`p-2 rounded-md ${
+                isDark ? "bg-gray-700 hover:bg-gray-600" : "bg-gray-200 hover:bg-gray-300"
+              } transition-colors`}
+            >
+              {isDark ? (
+                <SunIcon className="h-5 w-5 text-yellow-500" />
+              ) : (
+                <MoonIcon className="h-5 w-5 text-gray-800" />
+              )}
+            </button>
           </div>
 
           {/* Mobile Menu Button */}
           <div className="md:hidden flex items-center">
             <button onClick={() => setIsOpen(!isOpen)} className="p-2">
               {isOpen ? (
-                <XMarkIcon className="h-6 w-6 text-gray-800 dark:text-gray-200" />
+                <XMarkIcon className="h-6 w-6" />
               ) : (
-                <Bars3Icon className="h-6 w-6 text-gray-800 dark:text-gray-200" />
+                <Bars3Icon className="h-6 w-6" />
               )}
             </button>
           </div>
@@ -66,27 +90,40 @@ const NavBar = () => {
             animate={{ height: "auto" }}
             exit={{ height: 0 }}
             transition={{ duration: 0.3 }}
-            className="md:hidden bg-white dark:bg-gray-900 shadow-lg overflow-hidden"
+            className={`md:hidden ${mobileMenuBackground} shadow-lg overflow-hidden`}
           >
             <div className="px-4 py-3 space-y-3">
               {navItems.map((item) => (
                 <a
                   key={item.title}
                   href={item.href}
-                  className="block text-gray-800 dark:text-gray-200 hover:text-indigo-500 transition"
+                  className={`block ${
+                    isDark ? "text-gray-200" : "text-gray-800"
+                  } hover:text-indigo-500 transition-colors`}
                   onClick={() => setIsOpen(false)}
                 >
                   {item.title}
                 </a>
               ))}
               <button
-                onClick={() => setIsDark(!isDark)}
-                className="w-full flex justify-center p-2 rounded-md bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600"
+                onClick={() => {
+                  toggleTheme();
+                  setIsOpen(false);
+                }}
+                className={`w-full flex justify-center items-center p-2 rounded-md ${
+                  isDark ? "bg-gray-200 hover:bg-gray-300" : "bg-gray-700 hover:bg-gray-600"
+                } transition-colors`}
               >
                 {isDark ? (
-                  <SunIcon className="h-5 w-5 text-yellow-400" />
+                  <>
+                    <SunIcon className="h-5 w-5 text-yellow-500" />
+                    <span className="ml-2 text-black">Light Mode</span>
+                  </>
                 ) : (
-                  <MoonIcon className="h-5 w-5 text-gray-800" />
+                  <>
+                    <MoonIcon className="h-5 w-5 text-gray-200" />
+                    <span className="ml-2 text-white">Dark Mode</span>
+                  </>
                 )}
               </button>
             </div>
