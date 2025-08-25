@@ -30,7 +30,7 @@ const AboutMe = ({ isDark = true }) => {
           </span>{" "}
           with a passion for{" "}
           <span className="font-semibold text-indigo-400">
-            software development and creating innovative tech
+            software development and creating electronics
           </span>
           .
         </p>
@@ -42,10 +42,9 @@ const AboutMe = ({ isDark = true }) => {
         >
           I’ve worked on projects ranging from{" "}
           <span className="font-semibold">autonomous robotics</span> to{" "}
-          <span className="font-semibold">React-based web apps</span>. Beyond
-          engineering, I care deeply about{" "}
-          <span className="font-semibold">environmental sustainability</span>{" "}
-          and integrating technology with real-world impact.
+          <span className="font-semibold">React-based web apps</span>. Recently, I've been focused on{" "}
+          <span className="font-semibold">learning new technologies</span>{" "}
+          in order to create projects with a real-world impact.
         </p>
 
         <p
@@ -53,21 +52,22 @@ const AboutMe = ({ isDark = true }) => {
             isDark ? "text-gray-300" : "text-gray-700"
           }`}
         >
-          Outside of coding, you’ll probably find me{" "}
-          <span className="font-semibold">exploring nature trails</span>,{" "}
-          <span className="font-semibold">learning new tech</span>, or{" "}
-          <span className="font-semibold">experimenting with DIY electronics</span>.
+          I'm always looking forward to meeting new people! Feel free to reach out if you are {" "}
+          <span className="font-semibold">hiring interns</span>,{" "}
+          <span className="font-semibold"> looking to work on projects</span>, or{" "}
+          <span className="font-semibold">if you have any questions!</span>
         </p>
       </div>
-      <div className="flex-1 justify-end h-full w-full">
-        <img
-        src={selfphoto}
-        alt="Description"
-        className={`w-88 h-88 justify-right object-cover rounded-[10px] border-4 ${
-            isDark ? "border-indigo-400" : "border-indigo-600"
-        } shadow-lg transition-transform duration-300 ml-30 mt-10 hover:scale-105`}
-        />  
-      </div>
+        <div className="flex-1 justify-end h-full w-full">
+        <div className="relative inline-block picframe ml-30 mt-10">
+            <img
+            src={selfphoto}
+            alt="Description"
+            className="w-88 h-88 rounded-[10px] shadow-lg transition-transform duration-300 hover:scale-105 relative z-10 ring-4 ring-blue-500 ring-offset-2 ring-offset-black hover:shadow-[0_0_20px_5px_rgba(59,130,246,0.7)]"
+            />
+        </div>
+        </div>
+
     </section>
   );
 };
