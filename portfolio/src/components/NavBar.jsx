@@ -12,6 +12,17 @@ const NavBar = ({ isDark = true, setIsDark }) => {
 
   const toggleTheme = () => setIsDark(!isDark);
 
+  // ✅ Smooth scroll helper (JSX version)
+  const scrollToSection = (id) => {
+    const section = document.querySelector(id);
+    if (section) {
+      section.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+  };
+
   const navBackground = isDark ? "bg-gray-900/80" : "bg-white/80";
   const mobileMenuBackground = isDark ? "bg-gray-900/80" : "bg-gray-100";
 
@@ -41,9 +52,9 @@ const NavBar = ({ isDark = true, setIsDark }) => {
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-6">
             {navItems.map((item) => (
-              <motion.a
+              <motion.button
                 key={item.title}
-                href={item.href}
+                onClick={() => scrollToSection(item.href)}
                 animate={{ color: isDark ? "#e5e7eb" : "#1f2937" }}
                 whileHover={{
                   color: isDark ? "#818cf8" : "#6366f1",
@@ -53,7 +64,7 @@ const NavBar = ({ isDark = true, setIsDark }) => {
                 className="font-figtree transition-colors duration-200"
               >
                 {item.title}
-              </motion.a>
+              </motion.button>
             ))}
 
             {/* Theme Toggle */}
@@ -97,10 +108,12 @@ const NavBar = ({ isDark = true, setIsDark }) => {
           >
             <div className="px-4 py-3 space-y-3">
               {navItems.map((item) => (
-                <motion.a
+                <motion.button
                   key={item.title}
-                  href={item.href}
-                  onClick={() => setIsOpen(false)}
+                  onClick={() => {
+                    scrollToSection(item.href);
+                    setIsOpen(false);
+                  }}
                   initial={{ color: isDark ? "#e5e7eb" : "#1f2937" }}
                   whileHover={{
                     color: isDark ? "#818cf8" : "#6366f1",
@@ -110,7 +123,7 @@ const NavBar = ({ isDark = true, setIsDark }) => {
                   className="block font-figtree transition-colors duration-200"
                 >
                   {item.title}
-                </motion.a>
+                </motion.button>
               ))}
 
               {/* Mobile Theme Toggle */}

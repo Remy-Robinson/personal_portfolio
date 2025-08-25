@@ -42,8 +42,8 @@ export default function App() {
           <div className="relative z-10">
             <NavBar isDark={isDark} setIsDark={setIsDark} />
           </div>
-          <div className="relative z-1">
-            <About isDark={isDark} />
+          <div className="relative z-5">
+            <About isDark={isDark} setIsDark={setIsDark} />
           </div>
         </Suspense>
       </div>

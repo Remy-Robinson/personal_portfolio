@@ -44,7 +44,7 @@ const HeroSection = ({ isDark = true, setIsDark }) => {
 
   return (
     <section id="home">
-      <div className="flex flex-col justify-center items-left min-h-screen px-4 text-center">
+      <div className="flex flex-col justify-center items-center min-h-screen px-4 text-center">
         <h1
           className={`text-left text-4xl md:text-6xl font-bold mb-4 ${
             isDark ? "text-white" : "text-gray-900"
