@@ -105,14 +105,7 @@ const Particles = ({
     if (!container) return;
 
     const renderer = new Renderer({ depth: false, 
-      alpha: true, 
-      webgl: {
-        antialias: false,
-        premultipliedAlpha: true,
-        preserveDrawingBuffer: false,
-        powerPreference: 'high-performance'
-      }
-    });
+      alpha: true });
     const gl = renderer.gl;
     container.appendChild(gl.canvas);
     gl.clearColor(0, 0, 0, 0);

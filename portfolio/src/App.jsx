@@ -1,10 +1,9 @@
 import { useState, useEffect } from 'react';
-import reactLogo from './assets/react.svg';
-import viteLogo from '/vite.svg';
 import React, { Suspense, lazy } from 'react';
 import LoadingIcon from "./components/Loading.jsx";
 import Particles from "./components/Background.jsx";
-import HeroSection from "./components/heroSection.jsx";
+import HeroSection from "./pages/heroSection.jsx";
+import About from "./pages/About.jsx";
 import './index.css';
 import './App.css';
 
@@ -42,6 +41,9 @@ export default function App() {
           </div>
           <div className="relative z-10">
             <NavBar isDark={isDark} setIsDark={setIsDark} />
+          </div>
+          <div className="relative z-1">
+            <About isDark={isDark} />
           </div>
         </Suspense>
       </div>

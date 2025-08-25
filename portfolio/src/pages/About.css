@@ -1,0 +1,20 @@
+@import 'tailwindcss';
+
+.card{
+    border-radius: 0.5rem;
+    padding: 0.25rem;
+    background: linear-gradient(45deg, #4f46e5, #9333ea);
+    background-clip: padding-box, border-box;
+    background-origin: border-box;
+}
+
+.gradient-border{
+    border: 2px solid transparent;
+    background: linear-gradient(to right, hsl(var(--card)), hsl(var(--card)));
+    background-clip: padding-box;
+    background-origin: border-box;
+}
+
+.card-hover{
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}

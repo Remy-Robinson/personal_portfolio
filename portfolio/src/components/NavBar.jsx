@@ -16,10 +16,10 @@ const NavBar = ({ isDark = true, setIsDark }) => {
   const mobileMenuBackground = isDark ? "bg-gray-900/80" : "bg-gray-100";
 
   const navItems = [
-    { title: "Home", href: "#" },
+    { title: "Home", href: "#home" },
     { title: "About", href: "#about" },
+    { title: "Experience", href: "#experience" },
     { title: "Projects", href: "#projects" },
-    { title: "Contact", href: "#contact" },
   ];
 
   return (
