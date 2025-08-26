@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import './Skills.css';
 import {
   FaHtml5,
   FaCss3,
@@ -57,7 +58,7 @@ export const SkillsSection = ({ isDark }) => {
     <section id="skills" className="relative bg-secondary/30 px-6 py-24 z-10">
       <div className="max-w-6xl mx-auto text-center">
         {/* Title */}
-        <h2 className="text-4xl md:text-5xl font-bold mb-12 text-gradient bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-indigo-800">
+        <h2 className="text-4xl md:text-5xl font-bold mb-12 animate-gradient bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-indigo-800">
           Skills
         </h2>
 

@@ -10,9 +10,7 @@ const AboutMe = ({ isDark = true }) => {
       id="about"
       className="flex flex-col justify-start items-center min-h-screen px-4 py-12 gap-16"
     >
-      {/* Top: About text + image */}
       <div className="flex flex-col md:flex-row justify-between items-start w-full gap-10">
-        {/* LEFT: About text */}
         <div className="flex-1">
           <h2
             className={`text-left text-3xl md:text-5xl font-bold mb-6 animate-gradient ${
@@ -62,7 +60,6 @@ const AboutMe = ({ isDark = true }) => {
           </p>
         </div>
 
-        {/* RIGHT: Image */}
         <div className="flex-1 flex justify-center items-start h-full w-full">
           <div className="relative inline-block picframe mt-10">
             <img
@@ -74,7 +71,6 @@ const AboutMe = ({ isDark = true }) => {
         </div>
       </div>
 
-      {/* Skills Section BELOW the top row */}
       <div className="z-10 w-full">
         <SkillsSection
           isDark={isDark}

@@ -4,8 +4,11 @@ import LoadingIcon from "./components/Loading.jsx";
 import Particles from "./components/Background.jsx";
 import HeroSection from "./pages/heroSection.jsx";
 import About from "./pages/About.jsx";
+import Experience from "./pages/Experience.jsx";
+import ProjectsSection from "./pages/Projects.jsx";
 import './index.css';
 import './App.css';
+
 
 const NavBar = lazy(() => import('./components/NavBar.jsx'));
 
@@ -44,6 +47,14 @@ export default function App() {
           </div>
           <div className="relative z-5">
             <About isDark={isDark} setIsDark={setIsDark} />
+          </div>
+
+          <div className="relative z-5">
+            <Experience />
+          </div>
+
+          <div className = "relative z-5">
+            <ProjectsSection isDark = {isDark}/>
           </div>
         </Suspense>
       </div>
