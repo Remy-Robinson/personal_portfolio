@@ -1,6 +1,9 @@
 import project1 from "../assets/Project1.png";
 import project2 from "../assets/project2.png";
+import project3 from "../assets/project3.png";
+import project4 from "../assets/project4.png";
 import selfphoto from "../assets/selfphoto.png";
+import { SkillsSection } from "../components/Skills";
 
 const projects = [
   {
@@ -15,36 +18,45 @@ const projects = [
     id: 2,
     title: "STM32 Environmental Monitor Board",
     description:
-      "After spending time self-teaching KiCad, I designed a PCB board that is intended to monitor temperature conditions using an STM32 microcontroller.",
+      "After spending time self-leaching KiCad, I designed a PCB board that is intended to monitor temperature conditions using an STM32 microcontroller.",
     tags: ["KiCad", "Embedded Systems", "STM32"],
     image: project2,
     link: "https://github.com/Remy-Robinson/STM32-Environmental-Monitor-Board",
   },
   {
     id: 3,
-    title: "Project 3",
-    description: "Description for project 3.",
-    tags: ["Python", "Flask"],
-    image: selfphoto,
-    link: "https://example.com",
+    title: "Autonomous Battlebot",
+    description: "As a requirement for McMaster's Sumobot competition, I developed an autonomous battlebot capable of detecting opponents and avoiding collisions.",
+    tags: ["Arduino", "C++", "Robotics"],
+    image: project3,
+    link: "https://devpost.com/software/sumo-bot-4l7o0c",
   },
+  {
+    id: 4,
+    title: "DRV8833 Motor Driver PCB",
+    description: "A motor driver board based on the DRV8833 chip, designed for controlling DC motors.",
+    tags: ["KiCad", "PCB Design", "Motors"],
+    image: project4,
+    link: "https://example.com",
+  }
+  
 ];
 
 const ProjectsSection = ({ isDark }) => {
   return (
     <section id="projects" className="relative bg-secondary/30 px-6 py-24 z-10">
       <div className="max-w-6xl mx-auto text-center">
-          <h2
-            className={`text-center text-3xl md:text-5xl font-bold mb-6 animate-gradient ${
-              isDark ? "text-white" : "text-gray-900"
-            }`}
-          >
-            Projects
-          </h2>
-          
-          <p className={`text-center text-muted-foreground mb-12 max-w-2xl mx-auto ${isDark ? "text-gray-200" : "text-gray-700"}`}>
-            Here are some of my recent projects, showcasing my skills in software development and electronics.
-          </p>
+        <h2
+          className={`text-center text-3xl md:text-5xl font-bold mb-6 animate-gradient ${
+            isDark ? "text-white" : "text-gray-900"
+          }`}
+        >
+          Projects
+        </h2>
+
+        <p className={`text-center text-muted-foreground mb-12 max-w-2xl mx-auto ${isDark ? "text-gray-200" : "text-gray-700"}`}>
+          Here are some of my recent projects, showcasing my skills in software development and electronics.
+        </p>
 
         {/* Projects Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
@@ -54,7 +66,7 @@ const ProjectsSection = ({ isDark }) => {
               href={project.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative block rounded-2xl overflow-hidden backdrop-blur-md bg-white/10 dark:bg-gray-800/40 shadow-lg hover:shadow-indigo-500/50 transition-all duration-500 transform hover:-translate-y-3 animate-fade-in"
+              className={`group relative block rounded-2xl overflow-hidden transition-all duration-500 transform hover:-translate-y-2 hover:shadow-lg hover:shadow-indigo-600/20 bg-white/10 dark:bg-gray-800/40 backdrop-blur-md`}
               style={{ animationDelay: `${i * 150}ms` }}
             >
               {/* Image */}
@@ -62,7 +74,7 @@ const ProjectsSection = ({ isDark }) => {
                 <img
                   src={project.image}
                   alt={project.title}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
               </div>
 
@@ -90,6 +102,10 @@ const ProjectsSection = ({ isDark }) => {
             </a>
           ))}
         </div>
+      </div>
+
+      <div className="z-10 w-full">
+        <SkillsSection isDark={isDark} />
       </div>
     </section>
   );

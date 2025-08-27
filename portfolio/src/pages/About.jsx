@@ -70,12 +70,6 @@ const AboutMe = ({ isDark = true }) => {
           </div>
         </div>
       </div>
-
-      <div className="z-10 w-full">
-        <SkillsSection
-          isDark={isDark}
-        />
-      </div>
     </section>
   );
 };
