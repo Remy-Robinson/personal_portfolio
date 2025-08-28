@@ -34,65 +34,61 @@ const NavBar = ({ isDark = true, setIsDark }) => {
   ];
 
   return (
-    <nav
-      className={`fixed top-0 left-0 w-full z-[9999] ${navBackground} backdrop-blur-md shadow-sm transition-colors duration-300`}
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
-          {/* Logo */}
-          <a
-            href="#"
-            className={`text-2xl font-bold font-figtree ${
-              isDark ? "text-gray-200" : "text-gray-800"
+    <nav className="w-full bg-slate-900">
+      <div className="max-w-screen-xl mx-auto flex items-center justify-between px-4 md:px-8 py-4">
+        {/* Logo */}
+        <a
+          href="#"
+          className={`text-2xl font-bold font-figtree ${
+            isDark ? "text-gray-200" : "text-gray-800"
+          }`}
+        >
+          <img src={icon} alt="Logo" className="h-10 w-10 rounded-full" />
+        </a>
+
+        {/* Desktop Menu */}
+        <div className="hidden md:flex items-center space-x-6">
+          {navItems.map((item) => (
+            <motion.button
+              key={item.title}
+              onClick={() => scrollToSection(item.href)}
+              animate={{ color: isDark ? "#e5e7eb" : "#1f2937" }}
+              whileHover={{
+                color: isDark ? "#818cf8" : "#6366f1",
+                scale: 1.05,
+              }}
+              transition={{ type: "spring", stiffness: 100 }}
+              className="font-figtree transition-colors duration-200"
+            >
+              {item.title}
+            </motion.button>
+          ))}
+
+          {/* Theme Toggle */}
+          <motion.button
+            onClick={toggleTheme}
+            whileHover={{ scale: 1.1 }}
+            className={`p-2 rounded-md transition-colors duration-200 ${
+              isDark ? "bg-gray-700" : "bg-gray-200"
             }`}
           >
-            <img src={icon} alt="Logo" className="h-10 w-10 rounded-full" />
-          </a>
+            {isDark ? (
+              <SunIcon className="h-5 w-5 text-yellow-500" />
+            ) : (
+              <MoonIcon className="h-5 w-5 text-gray-800" />
+            )}
+          </motion.button>
+        </div>
 
-          {/* Desktop Menu */}
-          <div className="hidden md:flex items-center space-x-6">
-            {navItems.map((item) => (
-              <motion.button
-                key={item.title}
-                onClick={() => scrollToSection(item.href)}
-                animate={{ color: isDark ? "#e5e7eb" : "#1f2937" }}
-                whileHover={{
-                  color: isDark ? "#818cf8" : "#6366f1",
-                  scale: 1.05,
-                }}
-                transition={{ type: "spring", stiffness: 100 }}
-                className="font-figtree transition-colors duration-200"
-              >
-                {item.title}
-              </motion.button>
-            ))}
-
-            {/* Theme Toggle */}
-            <motion.button
-              onClick={toggleTheme}
-              whileHover={{ scale: 1.1 }}
-              className={`p-2 rounded-md transition-colors duration-200 ${
-                isDark ? "bg-gray-700" : "bg-gray-200"
-              }`}
-            >
-              {isDark ? (
-                <SunIcon className="h-5 w-5 text-yellow-500" />
-              ) : (
-                <MoonIcon className="h-5 w-5 text-gray-800" />
-              )}
-            </motion.button>
-          </div>
-
-          {/* Mobile Menu Button */}
-          <div className="md:hidden flex items-center">
-            <button onClick={() => setIsOpen(!isOpen)} className="p-2">
-              {isOpen ? (
-                <XMarkIcon className="h-6 w-6" />
-              ) : (
-                <Bars3Icon className="h-6 w-6" />
-              )}
-            </button>
-          </div>
+        {/* Mobile Menu Button */}
+        <div className="md:hidden flex items-center">
+          <button onClick={() => setIsOpen(!isOpen)} className="p-2">
+            {isOpen ? (
+              <XMarkIcon className="h-6 w-6" />
+            ) : (
+              <Bars3Icon className="h-6 w-6" />
+            )}
+          </button>
         </div>
       </div>
 
