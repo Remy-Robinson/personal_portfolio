@@ -7,27 +7,53 @@ const experiences = [
     company: "Ridan 3D Industries Inc.",
     date: "JUL 2025 - AUG 2025",
     location: "Canada",
-    description: "Built a full-stack interactive web application enabling real-time gesture-based user interaction using MediaPipe, integrating frontend and backend logic.",
-    skills: ["React", "JavaScript", "Tailwind CSS", "MediaPipe", "Full-Stack Development", "Gesture Recognition"],
-    image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&h=300&fit=crop&crop=center"
+    description:
+      "Built a full-stack interactive web application enabling real-time gesture-based user interaction using MediaPipe, integrating frontend and backend logic.",
+    skills: [
+      "React",
+      "JavaScript",
+      "Tailwind CSS",
+      "MediaPipe",
+      "Full-Stack Development",
+      "Gesture Recognition",
+    ],
+    image:
+      "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&h=300&fit=crop&crop=center",
   },
   {
     role: "Web Design and Development Intern",
     company: "Quantuity Analytics Inc",
     date: "MAR 2025 - JUN 2025",
     location: "Canada",
-    description: "Engineered a responsive WordPress website using HTML, CSS, and custom themes, aligned with modern web standards and Quantuity Analytics' branding.",
-    skills: ["WordPress", "HTML", "CSS", "Figma", "UX/UI Design", "SEO", "Responsive Design"],
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=300&fit=crop&crop=center"
+    description:
+      "Engineered a responsive WordPress website using HTML, CSS, and custom themes, aligned with modern web standards and Quantuity Analytics' branding.",
+    skills: [
+      "WordPress",
+      "HTML",
+      "CSS",
+      "Figma",
+      "UX/UI Design",
+      "SEO",
+      "Responsive Design",
+    ],
+    image:
+      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=300&fit=crop&crop=center",
   },
   {
     role: "VR Technician",
     company: "Mirage VR",
     date: "JUN 2024 - FEB 2025",
     location: "Mississauga, Canada",
-    description: "Maintained and calibrated virtual reality hardware, including headsets, controllers, sensors, and PCs, ensuring optimal performance for customers.",
-    skills: ["VR Hardware", "Troubleshooting", "System Configuration", "Technical Support"],
-    image: "https://www.rollingstone.com/wp-content/uploads/2021/01/AdobeStock_268919036.jpeg?w=1581&h=1054&crop=1"
+    description:
+      "Maintained and calibrated virtual reality hardware, including headsets, controllers, sensors, and PCs, ensuring optimal performance for customers.",
+    skills: [
+      "VR Hardware",
+      "Troubleshooting",
+      "System Configuration",
+      "Technical Support",
+    ],
+    image:
+      "https://www.rollingstone.com/wp-content/uploads/2021/01/AdobeStock_268919036.jpeg?w=1581&h=1054&crop=1",
   },
 ];
 
@@ -46,7 +72,9 @@ const Experience = ({ isDark = true }) => {
       entries.forEach((entry) => {
         const index = entry.target.dataset.index;
         if (entry.isIntersecting && index !== undefined) {
-          setVisibleItems(prev => [...new Set([...prev, parseInt(index)])]);
+          setVisibleItems((prev) => [
+            ...new Set([...prev, parseInt(index)]),
+          ]);
           entry.target.classList.add("animate-fade-in");
         }
       });
@@ -68,16 +96,25 @@ const Experience = ({ isDark = true }) => {
     <section id="experience" className="relative min-h-screen">
       {/* Header */}
       <div className="pt-20 pb-16 text-center">
-        <h1 className="text-5xl md:text-6xl font-bold animate-gradient mb-6">
+        <h1
+          className={`text-5xl md:text-6xl font-bold animate-gradient mb-6 ${
+            isDark ? "text-gray-100" : "text-gray-900"
+          }`}
+        >
           My Experience
         </h1>
-        <p className="text-xl text-gray-300 max-w-3xl mx-auto px-6">
-          Here's my professional journey and the skills I've developed along the way.
+        <p
+          className={`text-xl max-w-3xl mx-auto px-6 ${
+            isDark ? "text-gray-300" : "text-gray-700"
+          }`}
+        >
+          Here's my professional journey and the skills I've developed along
+          the way.
         </p>
       </div>
 
       {/* Timeline Container */}
-      <div className="max-w-7xl mx-auto px-8 pb-5 ml-8 md:ml-16">
+      <div className="max-w-7xl mx-auto px-8 pb-5">
         <div className="relative">
           {experiences.map((exp, i) => (
             <div
@@ -87,7 +124,7 @@ const Experience = ({ isDark = true }) => {
               style={{ transitionDelay: `${i * 150}ms` }}
             >
               {/* Dot + Date */}
-              <div className="absolute -left-8 md:-left-16 top-10 flex items-center z-10">
+              <div className="absolute left-0 sm:-left-4 md:-left-8 top-10 flex items-center z-10">
                 <span className="text-indigo-400 font-medium text-sm md:text-base mr-3">
                   {exp.date}
                 </span>
@@ -100,12 +137,18 @@ const Experience = ({ isDark = true }) => {
               </div>
 
               {/* Content Card */}
-              <div className="ml-24 md:ml-40">
-                <div className="bg-slate-800/80 backdrop-blur-sm border border-slate-700/50 rounded-lg overflow-hidden hover:border-slate-600/50 transition-all duration-500 hover:shadow-lg hover:shadow-indigo-600/10 group w-full max-w-4xl">
+              <div className="flex justify-end w-full pr-4 md:pr-12 lg:pr-24 xl:pr-40">
+                <div
+                  className={`w-full max-w-3xl rounded-lg overflow-hidden border transition-all duration-500 group hover:shadow-lg hover:shadow-indigo-600/10 ${
+                    isDark
+                      ? "bg-slate-800/80 border-slate-700/50"
+                      : "bg-gray-100 border-gray-300"
+                  }`}
+                >
                   {/* Image Header */}
                   <div className="relative h-24 md:h-28 overflow-hidden">
-                    <img 
-                      src={exp.image} 
+                    <img
+                      src={exp.image}
                       alt={`${exp.role} at ${exp.company}`}
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                     />
@@ -114,13 +157,21 @@ const Experience = ({ isDark = true }) => {
 
                   {/* Content */}
                   <div className="p-3 md:p-4">
-                    <h3 className="text-lg md:text-xl font-bold text-white mb-1 group-hover:text-indigo-600 transition-colors duration-300">
+                    <h3
+                      className={`text-lg md:text-xl font-bold mb-1 group-hover:text-indigo-600 transition-colors duration-300 ${
+                        isDark ? "text-white" : "text-gray-900"
+                      }`}
+                    >
                       {exp.role}
                     </h3>
                     <h4 className="text-sm md:text-base text-indigo-500 font-semibold mb-2">
                       {exp.company}
                     </h4>
-                    <p className="text-gray-300 leading-relaxed mb-3 text-xs md:text-sm">
+                    <p
+                      className={`leading-relaxed mb-3 text-xs md:text-sm ${
+                        isDark ? "text-gray-300" : "text-gray-800"
+                      }`}
+                    >
                       {exp.description}
                     </p>
 
@@ -129,7 +180,11 @@ const Experience = ({ isDark = true }) => {
                       {exp.skills.map((skill, skillIndex) => (
                         <span
                           key={skillIndex}
-                          className="px-2 py-0.5 text-xs bg-slate-700/50 border border-slate-600/50 text-gray-300 rounded-md hover:bg-slate-600/50 hover:border-indigo-600/50 hover:text-indigo-400 transition-all duration-300 cursor-default"
+                          className={`px-2 py-0.5 text-xs rounded-md transition-all duration-300 cursor-default ${
+                            isDark
+                              ? "bg-slate-700/50 border border-slate-600/50 text-gray-300 hover:bg-slate-600/50 hover:border-indigo-600/50 hover:text-indigo-400"
+                              : "bg-gray-200 border border-gray-300 text-gray-900 hover:bg-gray-300 hover:border-indigo-400 hover:text-indigo-600"
+                          }`}
                         >
                           {skill}
                         </span>
@@ -138,7 +193,6 @@ const Experience = ({ isDark = true }) => {
                   </div>
                 </div>
               </div>
-
             </div>
           ))}
         </div>

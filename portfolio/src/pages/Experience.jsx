@@ -7,27 +7,53 @@ const experiences = [
     company: "Ridan 3D Industries Inc.",
     date: "JUL 2025 - AUG 2025",
     location: "Canada",
-    description: "Built a full-stack interactive web application enabling real-time gesture-based user interaction using MediaPipe, integrating frontend and backend logic.",
-    skills: ["React", "JavaScript", "Tailwind CSS", "MediaPipe", "Full-Stack Development", "Gesture Recognition"],
-    image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&h=300&fit=crop&crop=center"
+    description:
+      "Built a full-stack interactive web application enabling real-time gesture-based user interaction using MediaPipe, integrating frontend and backend logic.",
+    skills: [
+      "React",
+      "JavaScript",
+      "Tailwind CSS",
+      "MediaPipe",
+      "Full-Stack Development",
+      "Gesture Recognition",
+    ],
+    image:
+      "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&h=300&fit=crop&crop=center",
   },
   {
     role: "Web Design and Development Intern",
     company: "Quantuity Analytics Inc",
     date: "MAR 2025 - JUN 2025",
     location: "Canada",
-    description: "Engineered a responsive WordPress website using HTML, CSS, and custom themes, aligned with modern web standards and Quantuity Analytics' branding.",
-    skills: ["WordPress", "HTML", "CSS", "Figma", "UX/UI Design", "SEO", "Responsive Design"],
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=300&fit=crop&crop=center"
+    description:
+      "Engineered a responsive WordPress website using HTML, CSS, and custom themes, aligned with modern web standards and Quantuity Analytics' branding.",
+    skills: [
+      "WordPress",
+      "HTML",
+      "CSS",
+      "Figma",
+      "UX/UI Design",
+      "SEO",
+      "Responsive Design",
+    ],
+    image:
+      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=300&fit=crop&crop=center",
   },
   {
     role: "VR Technician",
     company: "Mirage VR",
     date: "JUN 2024 - FEB 2025",
     location: "Mississauga, Canada",
-    description: "Maintained and calibrated virtual reality hardware, including headsets, controllers, sensors, and PCs, ensuring optimal performance for customers.",
-    skills: ["VR Hardware", "Troubleshooting", "System Configuration", "Technical Support"],
-    image: "https://www.rollingstone.com/wp-content/uploads/2021/01/AdobeStock_268919036.jpeg?w=1581&h=1054&crop=1"
+    description:
+      "Maintained and calibrated virtual reality hardware, including headsets, controllers, sensors, and PCs, ensuring optimal performance for customers.",
+    skills: [
+      "VR Hardware",
+      "Troubleshooting",
+      "System Configuration",
+      "Technical Support",
+    ],
+    image:
+      "https://www.rollingstone.com/wp-content/uploads/2021/01/AdobeStock_268919036.jpeg?w=1581&h=1054&crop=1",
   },
 ];
 
@@ -46,7 +72,9 @@ const Experience = ({ isDark = true }) => {
       entries.forEach((entry) => {
         const index = entry.target.dataset.index;
         if (entry.isIntersecting && index !== undefined) {
-          setVisibleItems(prev => [...new Set([...prev, parseInt(index)])]);
+          setVisibleItems((prev) => [
+            ...new Set([...prev, parseInt(index)]),
+          ]);
           entry.target.classList.add("animate-fade-in");
         }
       });
@@ -72,12 +100,13 @@ const Experience = ({ isDark = true }) => {
           My Experience
         </h1>
         <p className="text-xl text-gray-300 max-w-3xl mx-auto px-6">
-          Here's my professional journey and the skills I've developed along the way.
+          Here's my professional journey and the skills I've developed along
+          the way.
         </p>
       </div>
 
       {/* Timeline Container */}
-      <div className="max-w-7xl mx-auto px-8 pb-5 ml-8 md:ml-16">
+      <div className="max-w-7xl mx-auto px-8 pb-5">
         <div className="relative">
           {experiences.map((exp, i) => (
             <div
@@ -100,12 +129,13 @@ const Experience = ({ isDark = true }) => {
               </div>
 
               {/* Content Card */}
-              <div className="ml-24 md:ml-40">
-                <div className="bg-slate-800/80 backdrop-blur-sm border border-slate-700/50 rounded-lg overflow-hidden hover:border-slate-600/50 transition-all duration-500 hover:shadow-lg hover:shadow-indigo-600/10 group w-full max-w-4xl">
+              <div className="flex justify-end w-full pr-4 md:pr-12 lg:pr-24 xl:pr-40">
+                <div className="w-full max-w-3xl bg-slate-800/80 backdrop-blur-sm border border-slate-700/50 rounded-lg overflow-hidden 
+                                hover:border-slate-600/50 transition-all duration-500 hover:shadow-lg hover:shadow-indigo-600/10 group">
                   {/* Image Header */}
                   <div className="relative h-24 md:h-28 overflow-hidden">
-                    <img 
-                      src={exp.image} 
+                    <img
+                      src={exp.image}
                       alt={`${exp.role} at ${exp.company}`}
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                     />
@@ -138,7 +168,6 @@ const Experience = ({ isDark = true }) => {
                   </div>
                 </div>
               </div>
-
             </div>
           ))}
         </div>

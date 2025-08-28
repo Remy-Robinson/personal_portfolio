@@ -50,11 +50,11 @@ export default function App() {
           </div>
 
           <div className="relative z-5">
-            <Experience />
+            <Experience isDark={isDark} setIsDark={setIsDark} />
           </div>
 
           <div className = "relative z-5">
-            <ProjectsSection isDark = {isDark}/>
+            <ProjectsSection isDark = {isDark} setIsDark={setIsDark}/>
           </div>
         </Suspense>
       </div>

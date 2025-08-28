@@ -37,7 +37,8 @@ const NavBar = ({ isDark = true, setIsDark }) => {
     <nav
       className={`fixed top-0 left-0 w-full z-[9999] ${navBackground} backdrop-blur-md shadow-sm transition-colors duration-300`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Full-width container */}
+      <div className="w-full px-6 sm:px-8 lg:px-12">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <a
@@ -50,7 +51,7 @@ const NavBar = ({ isDark = true, setIsDark }) => {
           </a>
 
           {/* Desktop Menu */}
-          <div className="hidden md:flex items-center space-x-6">
+          <div className="hidden md:flex items-center space-x-8 ml-auto">
             {navItems.map((item) => (
               <motion.button
                 key={item.title}

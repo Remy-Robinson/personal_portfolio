@@ -84,10 +84,10 @@ const ProjectsSection = ({ isDark }) => {
               target="_blank"
               rel="noopener noreferrer"
               className={`group relative block rounded-2xl overflow-hidden
-                          transform transition-all duration-500 ease-out
-                          hover:-translate-y-3 hover:shadow-2xl hover:shadow-indigo-600/30
-                          bg-white/10 dark:bg-gray-800/40 backdrop-blur-md
-                          opacity-0 animate-fade-in`}
+              transform transition-all duration-500 ease-out
+              hover:-translate-y-3 hover:shadow-2xl hover:shadow-indigo-600/30
+              backdrop-blur-md opacity-0 animate-fade-in
+              ${isDark ? "bg-gray-700/60" : "bg-gray-300/30"}`}
               style={{
                 animationDelay: `${i * 200}ms`,
                 animationFillMode: "forwards",

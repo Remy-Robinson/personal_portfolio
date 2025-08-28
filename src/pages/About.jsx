@@ -8,7 +8,7 @@ const AboutMe = ({ isDark = true }) => {
   return (
     <section
       id="about"
-      className="flex flex-col justify-start items-center min-h-screen px-4 py-12 gap-16"
+      className="flex flex-col justify-start items-center px-4 py-12 gap-16"
     >
       <div className="flex flex-col md:flex-row justify-between items-start w-full gap-10">
         <div className="flex-1">
@@ -26,11 +26,11 @@ const AboutMe = ({ isDark = true }) => {
             }`}
           >
             I'm a{" "}
-            <span className="font-semibold text-indigo-400">
+            <span className="font-semibold text-indigo-500">
               Computer Engineering at McMaster University
             </span>{" "}
             with a passion for{" "}
-            <span className="font-semibold text-indigo-400">
+            <span className="font-semibold text-indigo-500">
               software development and creating electronics
             </span>
             .
@@ -65,7 +65,7 @@ const AboutMe = ({ isDark = true }) => {
             <img
               src={selfphoto}
               alt="Description"
-              className="w-88 h-88 rounded-[10px] shadow-lg transition-transform duration-300 hover:scale-105 relative z-10 ring-4 ring-blue-500 ring-offset-2 ring-offset-black hover:shadow-[0_0_20px_5px_rgba(59,130,246,0.7)]"
+              className="w-88 h-88 rounded-[10px] shadow-lg transition-transform duration-300 hover:scale-105 relative z-10 ring-4 ring-indigo-500 ring-offset-2 ring-offset-black hover:shadow-[0_0_20px_5px_rgba(89,100,246,0.7)]"
             />
           </div>
         </div>
