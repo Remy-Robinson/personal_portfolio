@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { SunIcon, MoonIcon, Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import icon from "../assets/logo.svg";
 
 const NavBar = ({ isDark = true, setIsDark }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -12,7 +13,6 @@ const NavBar = ({ isDark = true, setIsDark }) => {
 
   const toggleTheme = () => setIsDark(!isDark);
 
-  // ✅ Smooth scroll helper (JSX version)
   const scrollToSection = (id) => {
     const section = document.querySelector(id);
     if (section) {
@@ -46,7 +46,7 @@ const NavBar = ({ isDark = true, setIsDark }) => {
               isDark ? "text-gray-200" : "text-gray-800"
             }`}
           >
-            Remy
+            <img src={icon} alt="Logo" className="h-10 w-10 rounded-full" />
           </a>
 
           {/* Desktop Menu */}

@@ -1,3 +1,5 @@
+@import 'tailwindcss';
+
 .animate-gradient {
     background: linear-gradient(135deg, #8a76ff, #5e43ff, #f9fafb);
     background-size: 200%,200%;

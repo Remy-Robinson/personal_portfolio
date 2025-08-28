@@ -5,7 +5,7 @@ import Particles from "./components/Background.jsx";
 import HeroSection from "./pages/heroSection.jsx";
 import About from "./pages/About.jsx";
 import Experience from "./pages/Experience.jsx";
-import ProjectsSection from "./pages/Projects.jsx";
+import ProjectsSection from "./components/Projects.jsx";
 import './index.css';
 import './App.css';
 
