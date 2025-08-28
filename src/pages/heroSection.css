@@ -1,0 +1,75 @@
+@import 'tailwindcss';
+
+
+.animate-gradient {
+    background: linear-gradient(135deg, #8a76ff, #5e43ff, #f9fafb);
+    background-size: 200%,200%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    animation: gradient 8s ease infinite;
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100%{
+        background-position: 0% 50%;
+    }
+}
+
+.animate-fade-in {
+    animation: fadeIn 1.5s ease forwards;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.cosmic-button{
+    background: linear-gradient(135deg, #8a76ff, #5e43ff, #f9fafb);
+    background-size: 200%, 200%;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    text-align: center;
+    transition: background-position 0.5s ease;
+}
+
+.cosmic-button:hover {
+    background-position: 100% 50%;
+}
+
+
+/* Floating "lift" animation */
+.lift {
+  animation: floatUp 0.3s ease-out forwards;
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+/* Optional: Smooth scrolling for anchor links */
+html {
+  scroll-behavior: smooth;
+}
