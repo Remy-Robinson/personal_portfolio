@@ -29,6 +29,12 @@
     border-bottom: 1px solid rgba(245, 245, 245, 0.06);
 }
 
+@media (max-width: 768px) {
+    .proj-nav {
+        padding: 24px 20px;
+    }
+}
+
 .proj-back {
     background: none;
     border: none;
@@ -62,6 +68,15 @@
     margin: 0 auto;
 }
 
+@media (max-width: 768px) {
+    .proj-grid {
+        grid-template-columns: 1fr;
+        justify-items: center;
+        gap: 32px;
+        padding: 32px 20px;
+    }
+}
+
 /* ── Individual card ── */
 .proj-card {
     background: rgba(245, 245, 245, 0.02);
@@ -77,6 +92,14 @@
     background: rgba(245, 245, 245, 0.04);
     border-color: rgba(245, 245, 245, 0.14);
     transform: translateY(-4px);
+}
+
+@media (max-width: 480px) {
+    .proj-card {
+        width: 100%;
+        max-width: 100%;
+        /* Ensure it doesn't push out on very small screens */
+    }
 }
 
 /* ── Image area ── */

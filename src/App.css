@@ -197,3 +197,40 @@ a {
     font-weight: 300;
     opacity: 0.5;
 }
+
+@media (max-width: 768px) {
+    .navbar {
+        padding: 24px 20px;
+    }
+
+    .nav-links {
+        gap: 20px;
+    }
+
+    .main {
+        padding: 0 20px;
+    }
+
+    .container {
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        gap: 48px;
+    }
+
+    .left-col {
+        align-items: center;
+    }
+
+    .right-col {
+        justify-content: center;
+    }
+
+    .exp-list {
+        max-width: 100%;
+    }
+
+    .projects-btn {
+        align-self: center;
+    }
+}
